@@ -14,6 +14,12 @@ spec:
       labels:
         app: appsrv
     spec:
+      initContainers:
+        - name: check-db-ready
+          image: postgres:14
+          command: [ 'sh', '-c',
+            'until pg_isready -h postgres -p 5431; 
+          do echo waiting for database; sleep 2; done;' ]
       containers: # was laufen soll
         - name: appsrv # labels alle gleich
           image: ghcr.io/schtl/backend:latest
@@ -22,3 +28,17 @@ spec:
           ports:
             - containerPort: 8080 # port vom quarkus
           # command: ["tail", "-f", "/dev/null"] # überschreibt das CMD aus dem Dockerfile
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: appsrv
+
+spec:
+  ports:
+    - port: 8080 # mein port
+      targetPort: 80
+      protocol: TCP
+  selector:
+    component: appsrv
