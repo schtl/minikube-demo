@@ -12,6 +12,6 @@ jobs:
           java-version: '21'
           cache: 'maven'
       - name: Build with Maven
-        run:
+        run: | ## mehrere Zeilen
           mvn -B -DskipTests package
           ls -lh target
