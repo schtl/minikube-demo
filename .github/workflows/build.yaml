@@ -15,4 +15,6 @@ jobs:
         run: | ## mehrere Zeilen
           mvn -B -DskipTests package
           echo "--------------------"
+          cp src/main/docker/Dockerfile target
+          docker build --tag ghcr.io/schtl/backend:latest ./target/
           ls -lh target
