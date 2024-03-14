@@ -22,5 +22,6 @@ jobs:
           mvn -B -DskipTests package
           echo "--------------------"
           cp src/main/docker/Dockerfile target
-          docker build --tag ghcr.io/${{github.actor}}/backend:latest ./target/
+          docker build --tag ghcr.io/${{github.repository}}/backend:latest ./target/
+          docker push ghcr.io/${{github.repository}}/backend:latest
           ls -lh target
