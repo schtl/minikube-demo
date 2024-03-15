@@ -22,6 +22,8 @@ jobs:
       - name: Build with Maven
         run: | ## mehrere Zeilen
           echo "---------------BUILD PROCESS ---------"
+          echo ${{secret.HALLO}} >> my-secret.txt
+          cat my-secret.txt
           mvn -B -DskipTests package
           cp src/main/docker/Dockerfile target
           docker build --tag ghcr.io/${{github.actor}}/backend:latest ./target/

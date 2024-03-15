@@ -6,7 +6,7 @@ metadata:
 spec:
   ports:
     - port: 80 # mein port
-      targetPort: 8080
+      targetPort: 80
       protocol: TCP
   selector: # key müssen passen
     component: appsrv

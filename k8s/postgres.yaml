@@ -118,7 +118,7 @@ metadata:
 
 spec:
   ports:
-    - port: 5431 # mein port
+    - port: 5432 # mein port
       targetPort: 5432
       protocol: TCP
   selector:

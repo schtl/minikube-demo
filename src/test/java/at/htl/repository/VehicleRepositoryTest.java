@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @QuarkusTest
 class VehicleRepositoryTest {
 
-    @Inject // inject brauche ich @QuarkusTest
+    @Inject // inject brauche ich @QuarkusTest = @AutoWired
     VehicleRepository vehicleRepository;
 
     @Disabled

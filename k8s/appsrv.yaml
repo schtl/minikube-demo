@@ -18,7 +18,7 @@ spec:
         - name: check-db-ready
           image: postgres:14
           command: [ 'sh', '-c',
-            'until pg_isready -h postgres -p 5431; 
+            'until pg_isready -h postgres -p 5432; 
           do echo waiting for database; sleep 2; done;' ]
       containers: # was laufen soll
         - name: appsrv # labels alle gleich
@@ -26,6 +26,6 @@ spec:
           # remove this when stable. Currently we do not take care of version numbers
           imagePullPolicy: Always # immer wenn hochgefahren wird, wird ein neues image geholt
           ports:
-            - containerPort: 8080 # port vom quarkus
+            - containerPort: 80 # port vom quarkus
           # command: ["tail", "-f", "/dev/null"] # überschreibt das CMD aus dem Dockerfile
 
