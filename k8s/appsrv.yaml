@@ -8,11 +8,11 @@ spec:
   replicas: 1 # wieviele davon laufen, nur einer
   selector:
     matchLabels:
-      app: appsrv # name wird um hash erweitert - minikube
+      component: appsrv # name wird um hash erweitert - minikube
   template:
     metadata:
       labels:
-        app: appsrv
+        component: appsrv # component muss auch im Service passen
     spec:
       initContainers:
         - name: check-db-ready
@@ -29,16 +29,3 @@ spec:
             - containerPort: 8080 # port vom quarkus
           # command: ["tail", "-f", "/dev/null"] # überschreibt das CMD aus dem Dockerfile
 
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: appsrv
-
-spec:
-  ports:
-    - port: 8080 # mein port
-      targetPort: 80
-      protocol: TCP
-  selector:
-    component: appsrv
